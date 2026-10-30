@@ -51,4 +51,4 @@ The page and script use the assignment IDs `task-form`, `task-title`, `task-desc
 ## Team collaboration
 
 - Contribution received from Manuel (merged): [PR #1](https://github.com/vistula-team-project-73706/vistula-task-manager/pull/1)
-- Contribution submitted to Manuel (awaiting his review and merge): [PR #1](https://github.com/Manuel-Vazhakal-74143/vistula-task-manager/pull/1)
+- Contribution to Manuel (merged): [PR #1](https://github.com/Manuel-Vazhakal-74143/vistula-task-manager/pull/1)
