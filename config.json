@@ -1,0 +1,5 @@
+{
+  "supabaseUrl": "https://gdpuxflygtnldhasmpxw.supabase.co",
+  "supabasePublishableKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkcHV4Zmx5Z3RubGRoYXNtcHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzOTgzMzksImV4cCI6MjEwODk3NDMzOX0.WiqfjK7nsW6JYBgpsmHZweWpTjAFStnS0I9Dw9XZHlY",
+  "tableName": "tasks"
+}
