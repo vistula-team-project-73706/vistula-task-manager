@@ -63,7 +63,6 @@
       <input type="hidden" id="taskId">
       <label class="form-label" for="task-title">Task name</label><input id="task-title" name="title" class="form-input" maxlength="160" placeholder="e.g. Finish database assignment" required>
       <label class="form-label" for="task-description">Description <span class="optional">OPTIONAL</span></label><textarea id="task-description" name="description" class="form-input" rows="3" maxlength="1000" placeholder="Add a few helpful details…"></textarea>
-      <div class="form-row"><div><label class="form-label" for="taskDueDate">Due date <span class="optional">OPTIONAL</span></label><input id="taskDueDate" name="due_date" class="form-input" type="date"></div><div><label class="form-label" for="taskPriority">Priority</label><select id="taskPriority" name="priority" class="form-input"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></div></div>
       <p id="formError" class="form-error" role="alert" hidden></p>
       <div class="dialog-actions"><button class="secondary-button" id="cancelDialogButton" type="button">Cancel</button><button class="primary-button" id="task-submit" type="submit">Save task</button></div>
     </form>

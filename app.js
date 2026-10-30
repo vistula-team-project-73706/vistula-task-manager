@@ -3,7 +3,7 @@
 
   const $ = (selector) => document.querySelector(selector);
   const els = {
-    list: $('#task-list'), status: $('#status-message'), total: $('#totalCount'), completed: $('#completedCount'), remaining: $('#remainingCount'), allCount: $('#allFilterCount'), summary: $('#taskSummary'), empty: $('#emptyState'), emptyTitle: $('#emptyTitle'), emptyDescription: $('#emptyDescription'), dialog: $('#taskDialog'), form: $('#task-form'), taskId: $('#taskId'), title: $('#task-title'), description: $('#task-description'), dueDate: $('#taskDueDate'), priority: $('#taskPriority'), save: $('#task-submit'), formError: $('#formError'), toast: $('#toast')
+    list: $('#task-list'), status: $('#status-message'), total: $('#totalCount'), completed: $('#completedCount'), remaining: $('#remainingCount'), allCount: $('#allFilterCount'), summary: $('#taskSummary'), empty: $('#emptyState'), emptyTitle: $('#emptyTitle'), emptyDescription: $('#emptyDescription'), dialog: $('#taskDialog'), form: $('#task-form'), taskId: $('#taskId'), title: $('#task-title'), description: $('#task-description'), save: $('#task-submit'), formError: $('#formError'), toast: $('#toast')
   };
   const state = { config: null, tasks: [], filter: 'all', busy: false, toastTimer: null };
   const hasCredentials = (config) => config && /^https:\/\/.+/.test(config.supabaseUrl) && config.supabasePublishableKey && config.supabasePublishableKey !== 'YOUR_SUPABASE_PUBLISHABLE_KEY';
@@ -23,12 +23,6 @@
     els.status.className = `status-message${kind ? ` ${kind}` : ''}`;
     els.status.hidden = !message;
   }
-  function formatDate(value) {
-    if (!value) return '';
-    const date = new Date(`${value.slice(0, 10)}T00:00:00`);
-    if (Number.isNaN(date.getTime())) return '';
-    return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(date);
-  }
   function updateSummary() {
     const completed = state.tasks.filter((task) => task.completed === true).length;
     els.total.textContent = state.tasks.length;
@@ -41,13 +35,10 @@
     const id = escapeHtml(task.id);
     const title = escapeHtml(task.title || 'Untitled task');
     const description = escapeHtml(task.description || '');
-    const priority = ['low', 'medium', 'high'].includes(task.priority) ? task.priority : 'medium';
-    const dueDate = formatDate(task.due_date);
     const checked = task.completed === true;
     return `<article class="task-row${checked ? ' is-completed' : ''}" data-task-id="${id}">
       <button class="task-check" type="button" data-action="toggle" aria-label="Mark ${title} ${checked ? 'to do' : 'complete'}" aria-pressed="${checked}">${checked ? '✓' : ''}</button>
       <div class="task-copy"><h3 class="task-title">${title}</h3>${description ? `<p class="task-description">${description}</p>` : ''}</div>
-      <div class="task-meta"><span class="priority ${priority}">${priority[0].toUpperCase()}${priority.slice(1)} priority</span>${dueDate ? `<span class="due-date">${escapeHtml(dueDate)}</span>` : ''}</div>
       <div class="task-actions"><button class="icon-button" type="button" data-action="edit" aria-label="Edit ${title}" title="Edit">✎</button><button class="icon-button delete" type="button" data-action="delete" aria-label="Delete ${title}" title="Delete">⌫</button></div>
     </article>`;
   }
@@ -92,7 +83,7 @@
     setStatus('Loading your tasks…');
     render();
     try {
-      const rows = await api('?select=id,title,description,due_date,priority,completed,created_at&order=created_at.desc');
+      const rows = await api('?select=id,title,description,completed&order=id.desc');
       state.tasks = Array.isArray(rows) ? rows : [];
       setStatus('');
     } catch (error) {
@@ -111,8 +102,6 @@
     els.taskId.value = task?.id ?? '';
     els.title.value = task?.title ?? '';
     els.description.value = task?.description ?? '';
-    els.dueDate.value = task?.due_date ? String(task.due_date).slice(0, 10) : '';
-    els.priority.value = task?.priority ?? 'medium';
     $('#dialogTitle').textContent = task ? 'Edit task' : 'Add a task';
     els.save.textContent = task ? 'Save changes' : 'Save task';
     els.dialog.showModal();
@@ -125,7 +114,7 @@
     const title = els.title.value.trim();
     if (!title) { showFormError('Please enter a task name.'); els.title.focus(); return; }
     const id = els.taskId.value;
-    const payload = { title, description: els.description.value.trim() || null, due_date: els.dueDate.value || null, priority: els.priority.value };
+    const payload = { title, description: els.description.value.trim() || null };
     state.busy = true;
     els.save.disabled = true;
     els.save.textContent = id ? 'Saving…' : 'Adding…';

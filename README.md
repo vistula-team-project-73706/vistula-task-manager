@@ -26,7 +26,7 @@ Partner contribution files are intentionally not included; add `contribution.htm
    ```
 
    Keep the field names and `tableName` value as shown. Never put a database password, secret key, or service-role key in this public website.
-3. Your `public.tasks` table needs columns `id`, `title`, `description`, `due_date`, `priority`, `completed`, and `created_at`. A typical setup uses an integer identity `id`, text `title`, nullable text `description`, nullable date `due_date`, text `priority`, boolean `completed` defaulting to `false`, and `created_at` timestamp defaulting to `now()`.
+3. The current `public.tasks` table uses `id`, `title`, `description`, and `completed`. A typical setup uses an integer identity `id`, text `title`, nullable text `description`, and boolean `completed` defaulting to `false`.
 4. Enable Row Level Security and grant the `anon` role the SELECT, INSERT, UPDATE, and DELETE operations needed for this assignment. The browser sends the publishable key; RLS policies control which operations it can perform. Use policies only as permissive as your assignment requires.
 
 `config.json` is fetched at runtime, so run the site from a local web server while developing; opening `index.html` directly from the filesystem may block that request.
@@ -46,4 +46,4 @@ The URL and publishable key are delivered to every site visitor as browser confi
 
 ## Interface selectors
 
-The page and script use the assignment IDs `task-form`, `task-title`, `task-description`, `task-submit`, `status-message`, `task-list`, and `contribution-link`, plus IDs for the task dialog, due date, priority, filters, and overview. Filter buttons use the `data-filter` attribute; row actions use `data-action`.
+The page and script use the assignment IDs `task-form`, `task-title`, `task-description`, `task-submit`, `status-message`, `task-list`, and `contribution-link`, plus IDs for the task dialog, filters, and overview. Filter buttons use the `data-filter` attribute; row actions use `data-action`.
