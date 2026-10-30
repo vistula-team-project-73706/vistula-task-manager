@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Contribution</title>
+</head>
+<body>
+<h1>Team Contribution</h1>
+
+<button id="load-contributor">Show Contributor</button>
+<p>Contributor Student ID: <span id="contributor-student-id"></span></p>
+
+<br>
+<a href="index.html">Back to Task Manager</a>
+
+<script>
+    document.getElementById('load-contributor').addEventListener('click', function() {
+        fetch('contribution.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('contributor-student-id').innerText = data.contributorStudentId;
+            })
+            .catch(error => {
+                document.getElementById('contributor-student-id').innerText = "Error loading ID";
+            });
+    });
+</script>
+</body>
+</html>
