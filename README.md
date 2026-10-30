@@ -46,7 +46,7 @@ The URL and publishable key are delivered to every site visitor as browser confi
 
 ## Interface selectors
 
-The page and script use the assignment IDs `task-form`, `task-title`, `task-description`, `task-submit`, `status-message`, `task-list`, and `contribution-link`, plus IDs for the task dialog, filters, and overview. Filter buttons use the `data-filter` attribute; row actions use `data-action`.
+The page and script use the assignment IDs `student-id`, `task-form`, `task-title`, `task-description`, `task-submit`, `status-message`, `task-list`, and `contribution-link`. Each task uses `.task-item` with `data-id`, and the required `.task-title`, `.task-description`, `.task-status`, `.edit-task`, `.delete-task`, and `.toggle-task` classes. Filter buttons use the `data-filter` attribute; row actions use `data-action`.
 
 ## Team collaboration
 

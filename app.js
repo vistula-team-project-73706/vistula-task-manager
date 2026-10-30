@@ -36,10 +36,10 @@
     const title = escapeHtml(task.title || 'Untitled task');
     const description = escapeHtml(task.description || '');
     const checked = task.completed === true;
-    return `<article class="task-row${checked ? ' is-completed' : ''}" data-task-id="${id}">
-      <button class="task-check" type="button" data-action="toggle" aria-label="Mark ${title} ${checked ? 'to do' : 'complete'}" aria-pressed="${checked}">${checked ? '✓' : ''}</button>
-      <div class="task-copy"><h3 class="task-title">${title}</h3>${description ? `<p class="task-description">${description}</p>` : ''}</div>
-      <div class="task-actions"><button class="icon-button" type="button" data-action="edit" aria-label="Edit ${title}" title="Edit">✎</button><button class="icon-button delete" type="button" data-action="delete" aria-label="Delete ${title}" title="Delete">⌫</button></div>
+    return `<article class="task-item task-row${checked ? ' is-completed' : ''}" data-id="${id}">
+      <button class="toggle-task task-check" type="button" data-action="toggle" aria-label="Mark ${title} ${checked ? 'to do' : 'complete'}" aria-pressed="${checked}">${checked ? '✓' : ''}</button>
+      <div class="task-copy"><h3 class="task-title">${title}</h3><p class="task-description">${description}</p><p class="task-status">${checked ? 'Completed' : 'To do'}</p></div>
+      <div class="task-actions"><button class="edit-task icon-button" type="button" data-action="edit" aria-label="Edit ${title}" title="Edit">✎</button><button class="delete-task icon-button delete" type="button" data-action="delete" aria-label="Delete ${title}" title="Delete">⌫</button></div>
     </article>`;
   }
   function render() {
@@ -166,8 +166,8 @@
     els.list.addEventListener('click', (event) => {
       const button = event.target.closest('[data-action]');
       if (!button) return;
-      const row = button.closest('[data-task-id]');
-      const task = state.tasks.find((item) => String(item.id) === row.dataset.taskId);
+      const row = button.closest('[data-id]');
+      const task = state.tasks.find((item) => String(item.id) === row.dataset.id);
       if (!task) return;
       if (button.dataset.action === 'toggle') toggleTask(task);
       if (button.dataset.action === 'edit') openDialog(task);

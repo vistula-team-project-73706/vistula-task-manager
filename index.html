@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="app.js?v=2" defer></script>
+  <script src="app.js?v=3" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -25,7 +25,7 @@
       </nav>
       <div class="sidebar-bottom">
         <div class="sync-card"><span class="sync-dot" aria-hidden="true"></span><span><strong>Cloud sync</strong><small>Supabase connected</small></span></div>
-        <div class="student-card"><span class="avatar">73</span><span><strong>Student account</strong><small>ID 73706</small></span></div>
+        <div class="student-card"><span class="avatar">73</span><span><strong>Student account</strong><small>ID <span id="student-id">73706</span></small></span></div>
       </div>
     </aside>
 
@@ -36,7 +36,7 @@
       </header>
 
       <section class="page-heading" aria-labelledby="pageTitle">
-        <div><div class="eyebrow">YOUR PERSONAL WORKSPACE</div><h1 id="pageTitle">Good work starts<br class="mobile-break"> with a plan<span class="heading-period">.</span></h1><p class="page-subtitle">Keep your coursework moving, one task at a time.</p></div>
+        <div><div class="eyebrow">YOUR PERSONAL WORKSPACE</div><h1 id="pageTitle">Task Manager<span class="heading-period">.</span></h1><p class="page-subtitle">Good work starts with a plan. Keep your coursework moving, one task at a time.</p></div>
         <button class="primary-button" id="addTaskButton" type="button"><span aria-hidden="true">＋</span> Add a task</button>
       </section>
 
